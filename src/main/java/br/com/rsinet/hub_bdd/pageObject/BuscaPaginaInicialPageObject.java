@@ -10,44 +10,61 @@ public class BuscaPaginaInicialPageObject {
 	private WebDriver driver;
 	private WebDriverWait aguardar;
 
-	public BuscaPaginaInicialPageObject (WebDriver driver) {
+	public BuscaPaginaInicialPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
-	public BuscaPaginaInicialPageObject categoriaLaptop () {
-		driver.findElement(By.xpath("//android.widget.LinearLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.ImageView")).click();
+
+	public BuscaPaginaInicialPageObject categoriaLaptop() {
+		driver.findElement(By.id("laptopsImg")).click();
 		return this;
 	}
+
 	public BuscaPaginaInicialPageObject produtoSelecionado() {
-		driver.findElement(By.xpath("//android.widget.RelativeLayout[@content-desc=\"Laptops\"]/android.widget.LinearLayout/android.widget.GridView/android.widget.RelativeLayout[1]/android.widget.TextView[1]")).click();
+		driver.findElement(By.id("9")).click();
 		return this;
 	}
-	public BuscaPaginaInicialPageObject addCarrinho () {
-		driver.findElement(By.id("com.Advantage.aShopping:id/textViewProductQuantity")).click();
-		
+
+	public BuscaPaginaInicialPageObject selecionaProduto() {
+		driver.findElement(By.id("searchResultLabel")).click();
 		return this;
 	}
-	public BuscaPaginaInicialPageObject confirmarCompra () {
-		driver.findElement(By.id("com.Advantage.aShopping:id/textViewApply")).click();
-		driver.findElement(By.id("com.Advantage.aShopping:id/buttonProductAddToCart")).click();
-		return this;
-		
-	}
-	
-	public BuscaPaginaInicialPageObject credenciais () {
-		//credenciais necessaria para add ao carrinho
-		driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout[3]/android.widget.EditText")).sendKeys("cauasantana");
-		driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout[4]/android.widget.EditText")).sendKeys("Caique1");
-		driver.findElement(By.id("com.Advantage.aShopping:id/buttonLogin")).click();
+
+	public BuscaPaginaInicialPageObject addAoCarrinho() {
+		driver.findElement(By.name("save_to_cart")).click();
 		return this;
 	}
+
+	public BuscaPaginaInicialPageObject checkOut() {
+		driver.findElement(By.id("checkOutPopUp")).click();
+		return this;
+	}
+
+	public BuscaPaginaInicialPageObject next() {
+		driver.findElement(By.id("next_btn")).click();
+		return this;
+	}
+
+	public BuscaPaginaInicialPageObject confirmaPagamento() {
+		driver.findElement(By.id("pay_now_btn_SAFEPAY")).click();
+		return this;
+	}
+
 	public BuscaPaginaInicialPageObject Expected() throws InterruptedException {
 		aguardar.until(ExpectedConditions.elementToBeClickable(By.id("com.Advantage.aShopping:id/imageViewMenu")));
 		return this;
 	}
+
 	public BuscaPaginaInicialPageObject quantidade(String qtd) {
-		WebElement quantidade = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText"));
+		WebElement quantidade = driver.findElement(By.xpath(
+				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText"));
 		quantidade.click();
 		quantidade.sendKeys(qtd);
+		return this;
+	}
+	public BuscaPaginaInicialPageObject validação () {
+		WebElement confirmação = driver.findElement(By.xpath("/html/body/div[3]/section/article/div[2]/div/h2/span"));
+		confirmação.getText();
+		
 		return this;
 	}
 }

@@ -1,29 +1,44 @@
 package br.com.rsinet.hub_bdd.pageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 public class BuscaLupaPageObject {
-	WebDriver driver;
+	private WebDriver driver;
 	
 	public BuscaLupaPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
 
 	public BuscaLupaPageObject clicarLupa() {
-		driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.ImageView")).click();
+		driver.findElement(By.id("menuSearch")).click();
 		return this;
 	}
 	public BuscaLupaPageObject campoDePesquisa (String pesquisa) {
-		driver.findElement(By.id("com.Advantage.aShopping:id/editTextSearch")).sendKeys(pesquisa);
+		driver.findElement(By.id("autoComplete")).sendKeys(pesquisa + Keys.ENTER);
 		return this;
 	}
 	public BuscaLupaPageObject selecionaProduto () {
-		driver.findElement(By.id("com.Advantage.aShopping:id/imageViewProduct")).click();
+		
+		driver.findElement(By.id("searchResultLabel")).click();
 		return this;
 	}
-	public BuscaLupaPageObject pesquisar() {
-		driver.findElement(By.id("com.Advantage.aShopping:id/imageViewSearch")).click();
+	public BuscaLupaPageObject addAoCarrinho() {
+		driver.findElement(By.name("save_to_cart")).click();
 		return this;
 	}
+	public BuscaLupaPageObject checkOut() {
+		driver.findElement(By.id("checkOutPopUp")).click();
+		return this;
+	}
+	public BuscaLupaPageObject next() {
+		driver.findElement(By.id("next_btn")).click();
+		return this;
+	}
+	public BuscaLupaPageObject confirmaPagamento () {
+		driver.findElement(By.id("pay_now_btn_SAFEPAY")).click();
+	return this;
+	}
+	
 }

@@ -10,25 +10,19 @@ public class LoginPageObject {
 	public LoginPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
-	public LoginPageObject homePage () {
-		driver.findElement(By.id("com.Advantage.aShopping:id/imageViewMenu")).click();
-		driver.findElement(By.id("com.Advantage.aShopping:id/textViewMenuUser")).click();
+
+	public LoginPageObject user () {
+		driver.findElement(By.name("username")).click();
 		return this;
 	}
-	public LoginPageObject usuario (String login) {
-		WebElement Usuario = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout[3]/android.widget.EditText"));
-		Usuario.sendKeys(login);
+
+	public LoginPageObject usuario () {
+		driver.findElement(By.name("username")).sendKeys("cauasantana");
 		return this;
 	}
-	public LoginPageObject password (String senha) {
-		WebElement Senha = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout[4]/android.widget.EditText"));
-		Senha.sendKeys(senha);
+
+	public LoginPageObject senha() {
+		driver.findElement(By.name("password")).sendKeys("Caique1");
 		return this;
 	}
-	public LoginPageObject entrar () { 
-	WebElement Submit = driver.findElement(By.id("com.Advantage.aShopping:id/buttonLogin"));
-	Submit.click();
-	return this;
-	}
-	
 }

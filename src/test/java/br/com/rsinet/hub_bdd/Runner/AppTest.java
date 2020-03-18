@@ -1,4 +1,4 @@
-package br.com.rsinet.hub_bdd.compraBDD;
+package br.com.rsinet.hub_bdd.Runner;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
