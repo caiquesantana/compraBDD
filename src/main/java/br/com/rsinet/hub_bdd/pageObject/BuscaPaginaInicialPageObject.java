@@ -62,8 +62,8 @@ public class BuscaPaginaInicialPageObject {
 		return this;
 	}
 	public BuscaPaginaInicialPageObject validação () {
-		WebElement confirmação = driver.findElement(By.xpath("/html/body/div[3]/section/article/div[2]/div/h2/span"));
-		confirmação.getText();
+		WebElement confirmação = driver.findElement(By.id("orderPaymentSuccess"));
+		String mensagem = confirmação.getText();
 		
 		return this;
 	}
