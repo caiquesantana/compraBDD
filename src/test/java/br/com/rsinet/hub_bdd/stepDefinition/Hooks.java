@@ -27,7 +27,7 @@ public class Hooks {
 		context.getDriver();
 	}
 	
-	@After()
+	@After
 	public void fechaBrowser(Scenario scenario) {
 		String screenshotName = scenario.getName().replaceAll(" ", "_");
 		try {
@@ -36,7 +36,7 @@ public class Hooks {
 					.getScreenshotAs(OutputType.FILE);
 
 			File destinationPath = new File(
-					"C:\\Users\\caique.oliveira\\eclipse-workspace\\compraBDD\\Report"
+					"C:\\Users\\caique.oliveira\\eclipse-workspace\\compraBDD\\Report\\"
 							+ screenshotName + ".png");
 
 			Files.copy(sourcePath, destinationPath);

@@ -3,23 +3,27 @@ package br.com.rsinet.hub_bdd.pageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.com.rsinet.hub_bdd.suporte.Driver;
 
 public class LoginPageObject {
-	//WebDriver driver;
+	private WebDriver driver = Driver.driver;
+	private WebDriverWait aguardar;
 	
-	public LoginPageObject(WebDriver driver) {
-		PageFactory.initElements(driver, this);
+	public LoginPageObject(WebDriver driver1) {
+		this.driver = driver1;
+		aguardar = new WebDriverWait(driver, 5);
 	}
 
 	public LoginPageObject user() {
-		Driver.driver.findElement(By.name("username")).click();
+		Driver.driver.findElement(By.id("menuUser")).click();
 		return this;
 	}
 
 	public LoginPageObject usuario() {
-		Driver.driver.findElement(By.id("username")).sendKeys("cauasantana");
+		Driver.driver.findElement(By.name("username")).sendKeys("cauasantana");
 		return this;
 	}
 
@@ -30,5 +34,10 @@ public class LoginPageObject {
 	public LoginPageObject singin() {
 		Driver.driver.findElement(By.id("sign_in_btnundefined")).click();
 		return this;
+	}
+	public LoginPageObject esperaSingin() {
+		aguardar.until(ExpectedConditions.elementToBeClickable(By.id("sign_in_btnundefined")));
+		return this;
+		
 	}
 }

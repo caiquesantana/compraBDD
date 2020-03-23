@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BuscaPaginaInicialPageObject {
 	private WebDriver driver;
 	private WebDriverWait aguardar;
+	private String mensagem;
 
 	public BuscaPaginaInicialPageObject(WebDriver driver) {
 		this.driver = driver;
@@ -21,11 +22,6 @@ public class BuscaPaginaInicialPageObject {
 
 	public BuscaPaginaInicialPageObject produtoSelecionado() {
 		driver.findElement(By.id("9")).click();
-		return this;
-	}
-
-	public BuscaPaginaInicialPageObject selecionaProduto() {
-		driver.findElement(By.id("searchResultLabel")).click();
 		return this;
 	}
 
@@ -49,11 +45,10 @@ public class BuscaPaginaInicialPageObject {
 		return this;
 	}
 
-	public BuscaPaginaInicialPageObject Expected() throws InterruptedException {
-		aguardar.until(ExpectedConditions.elementToBeClickable(By.id("com.Advantage.aShopping:id/imageViewMenu")));
-		return this;
-	}
-
+//	public BuscaPaginaInicialPageObject Expected() throws InterruptedException {
+//		aguardar.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/header/nav/ul/li[3]/a/a/svg")));
+//		return this;
+//	}
 	public BuscaPaginaInicialPageObject quantidade(String qtd) {
 		WebElement quantidade = driver.findElement(By.xpath(
 				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText"));
@@ -62,9 +57,8 @@ public class BuscaPaginaInicialPageObject {
 		return this;
 	}
 	public BuscaPaginaInicialPageObject validação () {
-		WebElement confirmação = driver.findElement(By.id("orderPaymentSuccess"));
-		String mensagem = confirmação.getText();
-		
+	String mensagem = driver.getPageSource();
+		mensagem.contains("Thank you for buying with Advantage");
 		return this;
 	}
 }

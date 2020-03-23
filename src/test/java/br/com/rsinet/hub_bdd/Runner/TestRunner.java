@@ -12,17 +12,18 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		 features = "C:\\Users\\caique.oliveira\\eclipse-workspace\\compraBDD\\Feature\\Compra.feature"
+		 features = "Feature"
 		 ,glue="br.com.rsinet.hub_bdd.stepDefinition"
 			, monochrome = true
 			, dryRun = false
 			, plugin = {"com.cucumber.listener.ExtentCucumberFormatter:C:\\Users\\caique.oliveira\\eclipse-workspace\\compraBDD\\Report\\report.html"}
+//			, tags = "@BuscaHomeFalha"
 			)
 
 public class TestRunner {
 	@AfterClass
 	public static void Report(){
-		Reporter.loadXMLConfig(new File("C:\\Users\\caique.oliveira\\eclipse-workspace\\compraBDD\\Report\\report.xml"));
+		Reporter.loadXMLConfig(new File("C:\\Users\\caique.oliveira\\eclipse-workspace\\compraBDD\\report.xml"));
 	}
 
 }

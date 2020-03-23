@@ -1,8 +1,13 @@
 package br.com.rsinet.hub_bdd.stepDefinition;
 
+import static org.testng.Assert.assertTrue;
+
+import org.junit.Assert;
+
 import br.com.rsinet.hub_bdd.pageObject.BuscaPaginaInicialPageObject;
 import br.com.rsinet.hub_bdd.pageObject.LoginPageObject;
 import br.com.rsinet.hub_bdd.suporte.Context;
+import cucumber.api.java.jv.Menawa;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
@@ -20,15 +25,14 @@ public class CompraHomePageStep {
 	
 	@Dado("^que estou na tela inicial$")
 	public void que_estou_na_tela_inicial() throws Throwable {
-		System.out.println(home);
+		System.out.println("passou");
+		login.user();
 		
 	}
 
 	@Dado("^faco o login$")
 	public void faco_o_login() throws Throwable {
-		Thread.sleep(10000);
-		login.user()
-		.usuario().senha().singin();
+		login.usuario().senha().esperaSingin().singin();
 	}
 
 	@Dado("^clico na categoria LAPTOPS$")
@@ -39,7 +43,7 @@ public class CompraHomePageStep {
 
 	@Dado("^seleciono o produto$")
 	public void seleciono_o_produto() throws Throwable {
-		home.produtoSelecionado().selecionaProduto();
+		home.produtoSelecionado();
 
 	}
 
@@ -67,18 +71,22 @@ public class CompraHomePageStep {
 		
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	@Então("^eu valido a compra feita$")
 	public void eu_valido_a_compra_feita() throws Throwable {
-
+		assertTrue("Thank you for buying with Advantage".equals(home.validação()));
 	}
 
 	@Dado("^escolho produto na tela inicial$")
 	public void escolho_produto_na_tela_inicial() throws Throwable {
+		home.categoriaLaptop().produtoSelecionado();
+		
 
 	}
 
 	@Dado("^adiciono mais de (\\d+) unidades no carrinho$")
 	public void adiciono_mais_de_unidades_no_carrinho(int arg1) throws Throwable {
+		home.quantidade("11").addAoCarrinho().checkOut();
 
 	}
 
