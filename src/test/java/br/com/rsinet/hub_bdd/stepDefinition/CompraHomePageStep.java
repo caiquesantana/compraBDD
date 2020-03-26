@@ -24,75 +24,80 @@ public class CompraHomePageStep {
 	}
 	
 	@Dado("^que estou na tela inicial$")
-	public void que_estou_na_tela_inicial() throws Throwable {
-		System.out.println("passou");
+	public void que_estou_na_tela_inicial()  {
 		login.user();
 		
 	}
 
-	@Dado("^faco o login$")
-	public void faco_o_login() throws Throwable {
-		login.usuario().senha().esperaSingin().singin();
+	@Dado("^coloco o login \"([^\"]*)\"$")
+	public void coloco_o_login(String arg1)  {
+		login.usuario(arg1);
+	    
+	}
+
+	@Dado("^coloco a senha \"([^\"]*)\"$")
+	public void coloco_a_senha(String arg1)  {
+		login.senha(arg1);
+		login.singin();
 	}
 
 	@Dado("^clico na categoria LAPTOPS$")
-	public void clico_na_categoria_LAPTOPS() throws Throwable {
+	public void clico_na_categoria_LAPTOPS()  {
 		home.categoriaLaptop();
 
 	}
 
 	@Dado("^seleciono o produto$")
-	public void seleciono_o_produto() throws Throwable {
+	public void seleciono_o_produto()  {
 		home.produtoSelecionado();
 
 	}
 
 	@Dado("^adiciono ao carrinho$")
-	public void adiciono_ao_carrinho() throws Throwable {
+	public void adiciono_ao_carrinho()  {
 		home.addAoCarrinho();
 
 	}
 
 	@Dado("^vou para a pagina de chekout$")
-	public void vou_para_a_pagina_de_chekout() throws Throwable {
+	public void vou_para_a_pagina_de_chekout()  {
 		home.checkOut();
 
 	}
 
 	@Dado("^valido os dados de entrega$")
-	public void valido_os_dados_de_entrega() throws Throwable {
+	public void valido_os_dados_de_entrega()  {
 		home.next();
 		
 	}
 
 	@Quando("^confirmo o pagamento$")
-	public void confirmo_o_pagamento() throws Throwable {
+	public void confirmo_o_pagamento()  {
 		home.confirmaPagamento();
 		
 	}
 
-	@SuppressWarnings("unlikely-arg-type")
+	//Teste de Sucesso
 	@Então("^eu valido a compra feita$")
-	public void eu_valido_a_compra_feita() throws Throwable {
-		assertTrue("Thank you for buying with Advantage".equals(home.validação()));
+	public void eu_valido_a_compra_feita() throws InterruptedException  {
+		assertTrue(home.validação().contains("Thank you for buying with Advantage"));
+		Thread.sleep(2000);
 	}
 
 	@Dado("^escolho produto na tela inicial$")
-	public void escolho_produto_na_tela_inicial() throws Throwable {
+	public void escolho_produto_na_tela_inicial()  {
 		home.categoriaLaptop().produtoSelecionado();
-		
 
 	}
 
-	@Dado("^adiciono mais de (\\d+) unidades no carrinho$")
-	public void adiciono_mais_de_unidades_no_carrinho(int arg1) throws Throwable {
-		home.quantidade("11").addAoCarrinho().checkOut();
-
+	@Dado("^adiciono mais de \"([^\"]*)\" unidades no carrinho$")
+	public void adiciono_mais_de_unidades_no_carrinho(String arg1) {
+	   home.quantidade(arg1);
 	}
 
 	@Então("^eu comparo a quantidade de produto no carrinho$")
-	public void eu_comparo_a_quantidade_de_produto_no_carrinho() throws Throwable {
-
+	public void eu_comparo_a_quantidade_de_produto_no_carrinho()  {
+		home.addAoCarrinho();
 	}
 
 }

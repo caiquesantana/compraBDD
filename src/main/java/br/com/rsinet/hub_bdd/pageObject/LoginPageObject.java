@@ -22,13 +22,13 @@ public class LoginPageObject {
 		return this;
 	}
 
-	public LoginPageObject usuario() {
-		Driver.driver.findElement(By.name("username")).sendKeys("cauasantana");
+	public LoginPageObject usuario(String login) {
+		Driver.driver.findElement(By.name("username")).sendKeys(login);
 		return this;
 	}
 
-	public LoginPageObject senha() {
-		Driver.driver.findElement(By.name("password")).sendKeys("Caique1");
+	public LoginPageObject senha(String senha) {
+		Driver.driver.findElement(By.name("password")).sendKeys(senha);
 		return this;
 	}
 	public LoginPageObject singin() {

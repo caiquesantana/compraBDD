@@ -50,15 +50,15 @@ public class BuscaPaginaInicialPageObject {
 //		return this;
 //	}
 	public BuscaPaginaInicialPageObject quantidade(String qtd) {
-		WebElement quantidade = driver.findElement(By.xpath(
-				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText"));
+		WebElement quantidade = driver.findElement(By.name("quantity"));
 		quantidade.click();
+		quantidade.clear();
 		quantidade.sendKeys(qtd);
 		return this;
 	}
-	public BuscaPaginaInicialPageObject validação () {
+	public String validação () {
 	String mensagem = driver.getPageSource();
-		mensagem.contains("Thank you for buying with Advantage");
-		return this;
+		
+	return mensagem;
 	}
 }

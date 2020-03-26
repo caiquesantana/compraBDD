@@ -17,7 +17,6 @@ import cucumber.api.junit.Cucumber;
 			, monochrome = true
 			, dryRun = false
 			, plugin = {"com.cucumber.listener.ExtentCucumberFormatter:C:\\Users\\caique.oliveira\\eclipse-workspace\\compraBDD\\Report\\report.html"}
-//			, tags = "@BuscaHomeFalha"
 			)
 
 public class TestRunner {
